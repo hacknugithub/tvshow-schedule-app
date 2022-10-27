@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">List Tv Shows</string>
+    <string name="air_date_separator">%1$s | %2$s</string>
+</resources>
