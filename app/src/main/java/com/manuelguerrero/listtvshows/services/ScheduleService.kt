@@ -14,4 +14,8 @@ interface ScheduleService {
         @Query("country") country: String,
         @Query("date") date: String
     ): Call<List<MySchedule>>
+
+    @GET("search/shows") fun getSearchTvShowsList(
+            @Query("q") query: String
+    ): Call<List<MySchedule>>
 }

@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mcShow"
     android:layout_width="match_parent"
-    android:layout_height="150dp">
-
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:layout_gravity="fill_horizontal"
+    >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        app:layout_constraintVertical_weight="1"
-        android:paddingTop="10dp"
-        android:paddingLeft="10dp"
-        android:paddingBottom="10dp"
         >
 
         <ImageView
@@ -29,7 +29,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
             android:textAlignment="center"
-            android:padding="20dp"
+            android:padding="10dp"
             >
 
             <TextView
@@ -37,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="tvShowTitle"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textFontWeight="700"
                 />
 
@@ -46,7 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="tvShowNetwork"
-                android:textSize="15sp"
+                android:textSize="13sp"
                 android:layout_below="@+id/tvShowTitle"
 
                 />
@@ -56,7 +56,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/air_date_separator"
-                android:textSize="12sp"
+                android:textSize="10sp"
                 android:layout_below="@+id/tvShowNetwork"
 
                 />
@@ -64,4 +64,4 @@
         </RelativeLayout>
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

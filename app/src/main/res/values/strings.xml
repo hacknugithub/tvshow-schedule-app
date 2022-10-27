@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">List Tv Shows</string>
+    <string name="page_title_date">Tv Shows from %1$s</string>
+    <string name="search_title">Search</string>
+    <string name="content_description_search">Type to search</string>
+
     <string name="air_date_separator">%1$s | %2$s</string>
 </resources>

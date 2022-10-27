@@ -1,6 +1,5 @@
 package com.manuelguerrero.listtvshows.helpers
 
-import android.content.res.Resources
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -37,9 +36,6 @@ class ScheduleAdapter(private val scheduleList: List<MySchedule>) :RecyclerView.
 
 
         fun bind(scheduleItem: MySchedule) {
-            val name = "Cases :${scheduleItem.show.name.toString()}"
-            val res: Resources = Resources.getSystem()
-
             tvTitle.text = scheduleItem.show.name
             tvNetwork.text = scheduleItem.show.network?.name
 

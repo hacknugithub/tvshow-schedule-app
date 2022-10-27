@@ -3,9 +3,12 @@ package com.manuelguerrero.listtvshows.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.widget.Toast
-import androidx.recyclerview.widget.GridLayoutManager
+import android.widget.SearchView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.appbar.MaterialToolbar
 import com.manuelguerrero.listtvshows.R
 import com.manuelguerrero.listtvshows.helpers.ScheduleAdapter
 import com.manuelguerrero.listtvshows.models.MySchedule
@@ -19,19 +22,59 @@ import retrofit2.Response
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
+    private val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+    private val currentDate: String = LocalDateTime.now().format(formatter)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val tv_show_recycler = findViewById<RecyclerView>(R.id.tv_show_recycler)
-        loadSchedule(tv_show_recycler)
+
+        val topAppBar = findViewById<MaterialToolbar>(R.id.topAppBar)
+        topAppBar.title = baseContext.getString(R.string.page_title_date, currentDate)
+
+        val tvShowRecycler: RecyclerView = findViewById(R.id.tv_show_recycler)
+
+        loadSchedule(tvShowRecycler)
+
+        val searchView = findViewById<SearchView>(R.id.search)
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(p0: String?): Boolean {
+                Log.d("QueryTextSubmit", "Submitting: ${p0.toString()}")
+                loadSchedule(tvShowRecycler, p0.toString())
+                return true
+            }
+
+            override fun onQueryTextChange(p0: String?): Boolean {
+                Log.d("QueryTextChange", "Changing: ${p0.toString()}")
+                return true
+            }
+
+        })
+
+        searchView.setOnCloseListener(object : SearchView.OnCloseListener {
+            override fun onClose(): Boolean {
+                Log.d("OnCloseListener", "Closing?")
+                loadSchedule(tvShowRecycler)
+                return false
+            }
+
+        })
     }
 
-    private fun loadSchedule(recyclerTvView: RecyclerView){
-        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-        val current = LocalDateTime.now().format(formatter)
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.top_bar_app, menu);
+
+        return super.onCreateOptionsMenu(menu)
+    }
+
+
+
+    private fun loadSchedule(recyclerTvView: RecyclerView, searchQuery: String = ""){
 
         val destinationService = ServiceBuilder.buildService(ScheduleService::class.java)
-        val requestCall = destinationService.getScheduleTvShowsList("US", current)
+        val requestCall = if (searchQuery.isNotEmpty()) destinationService.getSearchTvShowsList(searchQuery) else destinationService.getScheduleTvShowsList("US", currentDate)
 
         requestCall.enqueue(object : Callback<List<MySchedule>>{
             override fun onResponse(
@@ -43,7 +86,7 @@ class MainActivity : AppCompatActivity() {
                     val scheduleList = response.body()!!
                     recyclerTvView.apply {
                         setHasFixedSize(true)
-                        layoutManager = GridLayoutManager(this@MainActivity, 2)
+                        layoutManager = LinearLayoutManager(this@MainActivity)
                         adapter = ScheduleAdapter(response.body()!!)
                     }
                 } else {
