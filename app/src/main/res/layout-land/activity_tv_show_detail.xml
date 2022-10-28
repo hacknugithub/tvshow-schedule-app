@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.ShowTvDetailActivity">
+
+    <WebView
+        android:id="@+id/wvSite"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_gravity="fill"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:id="@+id/detailFrameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingHorizontal="10sp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:id="@+id/tvDetailCard"
+            android:padding="10dp"
+            >
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:padding="5dp">
+
+                <ImageView
+                    android:id="@+id/ivDetailShowImage"
+                    android:layout_width="250dp"
+                    android:layout_height="300dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toTopOf="parent"
+                    tools:srcCompat="@tools:sample/avatars"
+                    android:layout_gravity="center"
+                    />
+
+                <TextView
+                    android:id="@+id/tvShowGenre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tv_genre_detail"
+                    android:layout_below="@+id/ivDetailShowImage"
+                    android:textSize="14sp"
+
+                    />
+
+                <TextView
+                    android:id="@+id/tvShowSchedule"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tv_schedule_detail"
+                    android:layout_below="@+id/tvShowGenre"
+                    android:textSize="14sp"
+                    />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="0.7">
+
+                    <LinearLayout
+                        android:id="@+id/detailHeaderContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.3"
+                        android:orientation="horizontal"
+                        android:padding="10dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.7"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintBottom_toTopOf="parent">
+
+                            <TextView
+                                android:id="@+id/tvDetailShowTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="tvShowTitle"
+                                android:textFontWeight="700"
+                                android:textSize="20sp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                android:layout_gravity="center"/>
+
+                            <TextView
+                                android:id="@+id/tvDetailShowNetwork"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/tvDetailShowTitle"
+                                android:text="tvShowNetwork"
+                                android:textSize="17sp"
+                                app:layout_constraintTop_toBottomOf="@+id/tvDetailShowTitle"
+                                app:layout_constraintStart_toEndOf="parent"
+                                android:layout_gravity="center"/>
+
+                            <TextView
+                                android:id="@+id/tvDetailRating"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/tvDetailShowNetwork"
+                                android:text="@string/tv_rating_detail"
+                                android:textSize="14sp"
+                                app:layout_constraintTop_toBottomOf="@+id/tvDetailShowNetwork"
+                                app:layout_constraintStart_toEndOf="parent"
+                                android:layout_gravity="center"/>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/tvSiteBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.3"
+                            android:layout_gravity="center"
+                            android:text="@string/tv_detail_site" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.7"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvShowDetail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/title_activity_tv_show_detail"
+                            android:textSize="14sp"
+                            android:padding="6dp"
+                            />
+
+                        <include
+                            layout="@layout/cast_tv_recycler_view" />
+                    </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
