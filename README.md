@@ -15,8 +15,9 @@ It's created with MVC architecture and with the followiing features:
 ```sh
 $ git clone https://github.com/hacknugithub/tvshow-schedule-app.git
 $ cd tvshow-schedule-app/
-$ Launch your Android Studio or check the test apk from [here](https://drive.google.com/file/d/1VYdvkL03SkNplE8SGgvRpwrB0YlBaep9/view?usp=sharing)
 ```
+Launch your Android Studio or check the test apk from [here](https://drive.google.com/file/d/1VYdvkL03SkNplE8SGgvRpwrB0YlBaep9/view?usp=sharing)
+
 The testing environment:
 ```
 Android Studio 4.1
