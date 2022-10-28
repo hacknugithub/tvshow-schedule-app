@@ -7,6 +7,15 @@
     android:layout_height="match_parent"
     tools:context=".activities.ShowTvDetailActivity">
 
+    <WebView
+        android:id="@+id/wvSite"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_gravity="fill"
+        android:visibility="gone"/>
+
     <LinearLayout
         android:id="@+id/detailFrameLayout"
         android:layout_width="match_parent"
