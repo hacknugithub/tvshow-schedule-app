@@ -1,5 +1,6 @@
 package com.manuelguerrero.listtvshows.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -64,12 +65,17 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater = menuInflater
-        inflater.inflate(R.menu.top_bar_app, menu);
+        inflater.inflate(R.menu.top_bar_app, menu)
 
         return super.onCreateOptionsMenu(menu)
     }
 
-
+    private fun showItemClicked(showItem: MySchedule.Show) {
+        Toast.makeText(this, "Clicked: ${showItem.id}", Toast.LENGTH_SHORT).show()
+        val intent = Intent(this, ShowTvDetailActivity::class.java)
+        intent.putExtra("showId", showItem.id.toString())
+        startActivity(intent)
+    }
 
     private fun loadSchedule(recyclerTvView: RecyclerView, searchQuery: String = ""){
 
@@ -87,7 +93,7 @@ class MainActivity : AppCompatActivity() {
                     recyclerTvView.apply {
                         setHasFixedSize(true)
                         layoutManager = LinearLayoutManager(this@MainActivity)
-                        adapter = ScheduleAdapter(response.body()!!)
+                        adapter = ScheduleAdapter(scheduleList) { showItem: MySchedule.Show -> showItemClicked(showItem) }
                     }
                 } else {
                     Toast.makeText(this@MainActivity, "Something broke ${response.message()}", Toast.LENGTH_LONG).show()

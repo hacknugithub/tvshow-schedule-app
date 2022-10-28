@@ -2,6 +2,7 @@ package com.manuelguerrero.listtvshows.helpers
 
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -11,7 +12,7 @@ import com.manuelguerrero.listtvshows.R
 import com.manuelguerrero.listtvshows.models.MySchedule
 import com.squareup.picasso.Picasso
 
-class ScheduleAdapter(private val scheduleList: List<MySchedule>) :RecyclerView.Adapter<ScheduleAdapter.ViewHolder>() {
+class ScheduleAdapter(private val scheduleList: List<MySchedule>, private val clickListener: (MySchedule.Show) -> Unit ) :RecyclerView.Adapter<ScheduleAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.schedule_item, parent, false)
@@ -21,7 +22,7 @@ class ScheduleAdapter(private val scheduleList: List<MySchedule>) :RecyclerView.
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         Log.d("Response", "List Count :${scheduleList.size}")
 
-        return holder.bind(scheduleList[position])
+        return holder.bind(scheduleList[position], clickListener)
     }
 
     override fun getItemCount(): Int {
@@ -35,15 +36,15 @@ class ScheduleAdapter(private val scheduleList: List<MySchedule>) :RecyclerView.
         var tvAirDate = itemView.findViewById<TextView>(R.id.tvShowAirDate)
 
 
-        fun bind(scheduleItem: MySchedule) {
+        fun bind(scheduleItem: MySchedule, clickListener: (MySchedule.Show) -> Unit) {
             tvTitle.text = scheduleItem.show.name
             tvNetwork.text = scheduleItem.show.network?.name
 
             val airDateString = itemView.context.getString(R.string.air_date_separator)
-            Log.d("Air date string", airDateString)
             tvAirDate.text = String.format(airDateString, scheduleItem.airdate, scheduleItem.airtime)
 
             Picasso.get().load(scheduleItem.show.image?.medium).into(imageView)
+            itemView.setOnClickListener { clickListener(scheduleItem.show) }
         }
     }
 }

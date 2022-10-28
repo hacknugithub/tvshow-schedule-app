@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.ShowTvDetailActivity">
+
+    <LinearLayout
+        android:id="@+id/detailFrameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingHorizontal="10sp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:orientation="horizontal"
+            android:id="@+id/tvDetailCard"
+            android:padding="10dp"
+            >
+
+            <ImageView
+                android:id="@+id/ivDetailShowImage"
+                android:layout_width="168dp"
+                android:layout_height="match_parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars"
+                android:layout_gravity="center"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:padding="10dp"
+                android:textDirection="ltr">
+
+                <TextView
+                    android:id="@+id/tvDetailShowTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="tvShowTitle"
+                    android:textFontWeight="700"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tvDetailShowNetwork"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvDetailShowTitle"
+                    android:text="tvShowNetwork"
+                    android:textSize="17sp"
+
+                    />
+
+                <TextView
+                    android:id="@+id/tvDetailRating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvDetailShowNetwork"
+                    android:text="@string/tv_rating_detail"
+                    android:textSize="14sp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/tvSiteBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvDetailRating"
+                    android:text="@string/tv_detail_site" />
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvShowDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_activity_tv_show_detail"
+            android:textSize="14sp"
+            />
+
+        <TextView
+            android:id="@+id/tvShowGenre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_genre_detail"
+            android:textSize="14sp"
+
+            />
+
+        <TextView
+            android:id="@+id/tvShowSchedule"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_schedule_detail"
+            android:textSize="14sp"
+            />
+
+        <include layout="@layout/cast_tv_recycler_view" />
+
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
